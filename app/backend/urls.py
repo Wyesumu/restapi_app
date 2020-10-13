@@ -18,7 +18,7 @@ from django.urls import path
 from rest_app import views
 
 urlpatterns = [
-	path('top', views.GetData.as_view()),
-	path('upload', views.UploadData.as_view()),
+	path('top', views.GetData.as_view(), name='top'),
+	path('upload', views.UploadData.as_view(), name='upload'),
     path('admin/', admin.site.urls),
 ]
