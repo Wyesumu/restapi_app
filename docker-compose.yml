@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./app
+    command: gunicorn --workers=4 backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+  cache:
+   image: memcached
+   ports:
+     - "11211:11211"
+   entrypoint:
+    - memcached
+    - -m 64
