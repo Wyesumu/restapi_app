@@ -53,16 +53,16 @@ def get_top_customers():
         customers.append(customer)
 
     result = []
-    for customer_1 in customers:
-        for gem in customer_1['gems']:
+    for customer in customers:
+        for gem in customer['gems']:
             gem_has_duplicate = False
             # iterate through every customer gems
             # and compare it with every other customer gem_list
-            for customer_2 in customers:
+            for temp_customer in customers:
                 # ignore if it's a same customer
-                if customer_1['username'] != customer_2['username']:
+                if customer['username'] != temp_customer['username']:
                     # if other customer has gem in his list
-                    if gem in customer_2['gems']:
+                    if gem in temp_customer['gems']:
                         # then mark it
                         gem_has_duplicate = True
                         # and exit loop for this gem
@@ -70,7 +70,7 @@ def get_top_customers():
             # if wasn't able to find second gem in any other
             # customer gem list then delete this gem
             if not gem_has_duplicate:
-                customer_1['gems'].remove(gem)
+                customer['gems'].remove(gem)
 
         result.append(customer)
 
